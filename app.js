@@ -1,14 +1,21 @@
-const app = require("express")();
+const express = require('express');
+const app = require('express')();
 const dotenv = require("dotenv");
+const cors = require("cors");
 
-const routes = require("./routes");
+
+app.use(express.json());
+app.use(cors());
+
+const routes = require('./routes');
 
 dotenv.config();
-const port = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
-app.listen(port, ()=> console.log("App is running @ port: ", port))
+app.use("/", routes);
+app.listen(PORT, ()=> console.log(`App is running @ port: ${PORT}`))
 
-app.get("/", routes);
+
 
 
 function print (path, layer) {
@@ -40,5 +47,8 @@ function print (path, layer) {
   }
   
   app._router.stack.forEach(print.bind(null, []))
+
+
+
 
 

@@ -1,4 +1,6 @@
-console.log("Hello")
+
+
+
 module.exports = (req, res) => {
 
     console.log("get User is called");
